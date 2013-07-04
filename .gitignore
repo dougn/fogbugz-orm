@@ -33,3 +33,9 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Doug
+*.env
+docs/_build
+comments.txt
+
