@@ -12,7 +12,6 @@ fborm.parse Module Documentation
 """
 import functools
 import datetime
-import jsontree
 
 def keys2cols(fbtypemap, namemap={}):
     """
@@ -70,6 +69,7 @@ def extract(fbdata, fbtypemap, name_map={}):
         fbobj = extract(res.events.event, fbtypemap, namemap)
         res = fb.edit(**fbargs(fbobj, fbtypemap, namemap))
     """
+    import jsontree
     res = jsontree.jsontree()
     late_processes = []
     for name, conv in fbtypemap.iteritems():

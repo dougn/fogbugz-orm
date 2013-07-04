@@ -117,7 +117,6 @@ Core Documentation
    fborm
    
    util
-   version
      
 ===========   
 License

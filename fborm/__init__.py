@@ -7,9 +7,13 @@ FogBugzORM Extended Interface
 fborm Module Documentation
 ===========================
 """
-## See version.py for version and author information
-import fogbugz
-from .version import *
+
+__version__ = (0,1,1)
+__version_string__ = '.'.join(str(x) for x in __version__)
+
+__author__ = 'Doug Napoleone'
+__email__ = 'doug.napoleone+fborm@gmail.com'
+
 from .util import *
 from .types import *
 from .objects import *
@@ -34,6 +38,7 @@ class FogBugzORM:
             raise TypeError(
                 "You must supply both 'username' and 'password'")
         self.namemap = {}
+        import fogbugz
         self.fb = fogbugz.FogBugz(hostname, token=token)
         self.username = username
         self.password = password
