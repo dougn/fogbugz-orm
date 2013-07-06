@@ -34,6 +34,43 @@ External Links:
 Quick Start
 ===========
 
+**Compairing FogBugzPy to FogBugz-ORM**
+
+Example code from `FogBugzPy`_ documentation:
+
+.. code:: python
+
+    from fogbugz import FogBugz
+    import fbSettings
+    
+    fb = FogBugz(fbSettings.URL, fbSettings.TOKEN)
+    
+    resp = fb.search(q='assignedTo:"me" status:"Active"',
+                     cols="ixBug,sTitle",
+                     max=10)
+    
+    for case in resp.cases.findAll('case'):
+        print "%s: %s" % (case.ixbug.string, 
+                          case.stitle.string.encode('UTF-8'))
+                          
+Equivolent FogBugz-ORM code:
+
+.. code:: python
+
+    from fborm import FogBugzORM
+    import fbSettings
+    
+    fb = FogBugzORM(fbSettings.URL, fbSettings.TOKEN)
+    
+    cases = fb.search(q='assignedTo:"me" status:"Active"',
+                      cols="ixBug,sTitle",
+                      max=10)
+    
+    for case in cases:
+        print "%s: %s" % (case.ixBug, case.sTitle)
+                          
+
+
 **Get all the cases from the 'To Be Closed' filter and close them.**
 
 .. code:: python
@@ -57,7 +94,7 @@ Quick Start
     
     ### Make sure they are closed
     for case in cases:
-        if 'CLOSED' in case.sStatus:
+        if not case.fOpen:
             continue
         if 'Active' in case.sStatus:
             fbo.resolve(ixBug=case.ixBug)

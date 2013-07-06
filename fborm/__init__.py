@@ -8,7 +8,7 @@ fborm Module Documentation
 ===========================
 """
 
-__version__ = (0,1,1)
+__version__ = (0,1,2)
 __version_string__ = '.'.join(str(x) for x in __version__)
 
 __author__ = 'Doug Napoleone'
@@ -30,7 +30,7 @@ class FogBugzORM:
     
     def __init__(self, hostname, token=None, username=None, password=None,
                  namemap={}):
-        if token and (username or passsword):
+        if token and (username or password):
             raise TypeError(
                 "if you supply 'token' you can"
                 "not supply 'username' or 'password'")
