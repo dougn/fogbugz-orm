@@ -40,14 +40,7 @@ Example code from `FogBugzPy`_ documentation:
 
 .. code:: python
 
-    from fogbugz import FogBugz
-    import fbSettings
-    
-    fb = FogBugz(fbSettings.URL, fbSettings.TOKEN)
-    
-    resp = fb.search(q='assignedTo:"me" status:"Active"',
-                     cols="ixBug,sTitle",
-                     max=10)
+    resp = fb.search(cols="ixBug,sTitle")
     
     for case in resp.cases.findAll('case'):
         print "%s: %s" % (case.ixbug.string, 
@@ -56,19 +49,17 @@ Example code from `FogBugzPy`_ documentation:
 Equivolent FogBugz-ORM code:
 
 .. code:: python
-
-    from fborm import FogBugzORM
-    import fbSettings
     
-    fb = FogBugzORM(fbSettings.URL, fbSettings.TOKEN)
-    
-    cases = fb.search(q='assignedTo:"me" status:"Active"',
-                      cols="ixBug,sTitle",
-                      max=10)
+    cases = fb.search(cols="ixBug,sTitle")
     
     for case in cases:
-        print "%s: %s" % (case.ixBug, case.sTitle)
+        print "%d: %s" % (case.ixBug, case.sTitle)
                           
+* You can access the array of cases directly as a list.
+* The column names are refered to in their proper mixed case matching the API
+  as they must be for the cols argument; ``ixBug``, ``sTitle``.
+* The data is extracted and properly converted; ``ixBug`` is an integer, and
+  ``sTitle`` is a UTF-8 converted string.
 
 
 **Get all the cases from the 'To Be Closed' filter and close them.**
@@ -82,12 +73,12 @@ Equivolent FogBugz-ORM code:
     
     ### Find the 'To Be Closed' filter
     filters = fbo.listFilters()
-    for filter in filters:
-        if filter.sName == 'To Be Closed':
+    for filt in filters:
+        if filt.sName == 'To Be Closed':
             break
     
     ### Set it as the current filter
-    fbo.setCurrentFilter(filter)
+    fbo.setCurrentFilter(filt)
     
     ### Get all cases in that filter
     cases = fbo.search()

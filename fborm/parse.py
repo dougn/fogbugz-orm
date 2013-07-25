@@ -49,7 +49,9 @@ def _convert(res, fbdata, name, conv, typemap, namemap):
     mappedname = namemap.get(getattr(conv, 'resname', name),
                              getattr(conv, 'resname', name)).lower()
 
-    if getattr(conv, 'attrib', False):
+    if getattr(conv, 'ignore', False):
+        return
+    elif getattr(conv, 'attrib', False):
         res[name] = conv(fbdata, mappedname)
     else:
         inner_data = fbdata.find(mappedname)
@@ -101,6 +103,9 @@ def _sort_by(names):
     def _sort_by_(names, item):
         return [item[name] for name in names]
     return functools.partial(_sort_by_, names)
+
+def _dt2fbdt(dt):
+    return dt.isoformat().split('.')[0] + 'Z'
     
 def fbsetconvert(value):
     """
@@ -111,7 +116,4 @@ def fbsetconvert(value):
         return ','.join(fbsetconvert(v) for v in value)
     return str(value)
     
-
-def _dt2fbdt(dt):
-    return dt.isoformat().split('.')[0] + 'Z'
     

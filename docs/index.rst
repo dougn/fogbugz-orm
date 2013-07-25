@@ -73,7 +73,7 @@ return a subset that way.
     import fborm
     
     fbo = fborm.FogBugzORM("https://hostname/", secret_token)
-    result = fbo.search(q='123', cols=cols="sTitle, sPersonAssignedTo, ixArea")
+    result = fbo.search(q='123', cols="sTitle,sPersonAssignedTo,ixArea")
     print result[0].sTitle
     print result[0].sPersonAssignedTo
     if result[0].ixArea > 10:
@@ -109,12 +109,13 @@ Core Documentation
 .. toctree::
    :maxdepth: 2
    
-   types
-   objects
-   parse
-   commands
-   ext
    fborm
+   commands
+   objects
+   types
+   parse
+
+   ext
    
    util
      

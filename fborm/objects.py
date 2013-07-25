@@ -15,46 +15,6 @@ fborm.objects Module Documentation
 from . import types
 from . import parse
 
-
-fbtags = types.fbcol(types.fblistof(types.fbstring),
-               colname='tags', resname='tags', setname='sTags',
-               setter=parse.fbsetconvert)
-"""
-:py:data:`fborm.types.fbcol` (:py:data:`fborm.types.fblistof` (:py:data:`fborm.types.fbstring`),
-colname='tags', resname='tags', setname='sTags',
-setter= :py:data:`fborm.parse.fbsetconvert`)
-               
-.. code:: python
-
-    fbtags = fborm.types.fbcol(
-        fborm.types.fblistof(fborm.types.fbstring),
-        colname='tags',
-        resname='tags',
-        setname='sTags',
-        setter=fborm.parse.fbsetconvert)
-"""
-fbtags.fbtype = 'fborm.objects.fbtags'
-
-fbixBugChildren = types.fbcol(types.fbcommalistof(types.fbint),
-                        colname='ixBugChildren',
-                        setname='ixBugChildren',
-                        setter=lambda x: parse.fbsetconvert(x) if x else ' ')
-"""
-:py:data:`fborm.types.fbcol` (:py:data:`fborm.types.fbcommalistof` (:py:data:`fborm.types.fbint`),
-colname='ixBugChildren', setname='ixBugChildren',
-setter=lambda x: :py:data:`fborm.parse.fbsetconvert` (x) if x else ' ')
-
-.. code:: python
-
-    fbixBugChildren = fborm.types.fbcol(
-        fborm.types.fbcommalistof(fborm.types.fbint),
-        colname='ixBugChildren',
-        setname='ixBugChildren',
-        setter=lambda x: fborm.parse.fbsetconvert(x) if x else ' ')
-
-"""
-fbixBugChildren.fbtype = 'fborm.objects.fbixBugChildren'
-
 #:
 fbError = dict(
     sError          = types.fbself,
@@ -235,7 +195,7 @@ fbBug_ixBug = dict(
 fbBug = dict(
     ixBug           = types.fbint,
     ixBugParent     = types.fbint,
-    ixBugChildren   = fbixBugChildren,
+    ixBugChildren   = types.fbixBugChildren,
     sTitle          = types.fbstring,
     ixProject       = types.fbint,
     sProject        = types.fbstring,
@@ -269,11 +229,15 @@ fbFixFor = dict(
     sFixfor         = types.fbstring,
     ixProject       = types.fbint,
     sProject        = types.fbstring,
-    fDeleted        = types.fbbool,
-    dt              = types.fbdatetime,
+    fDeleted        = types.fbcol(types.fbbool, setname='fAssignable'),
+    fReallyDeleted  = types.fbbool,
+    dt              = types.fbcol(types.fbdatetime, setname='dtRelease'),
     dtStart         = types.fbdatetime,
     sStartNote      = types.fbstring,
-    setixForForDependency = types.fblistof(types.fbint))
+    setixForForDependency = types.fbcol(types.fblistof(types.fbint),
+                                        settable=False))
+
+
 
 #: alias of :py:data:`fborm.objects.fbFixFor`
 fbMilestone = fbFixFor

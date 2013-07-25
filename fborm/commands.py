@@ -242,13 +242,6 @@ def listPeople(fb, persontype=objects.fbPerson,
     res = fb.listPeople(**args)
     return parse.extract_all(res.people, persontype, {}, sort_by)
 
-def listAllPeople(fb, persontype=objects.fbPerson, sort_by=None):
-    """listAllPeople(fb, persontype=fborm.objects.fbPerson, sort_by=None)
-    """
-    return listPeople(fb, persontype=persontype, sort_by=sort_by,
-                      fIncludeDeleted=1, fIncludeVirtual=1, fIncludeNormal=1,
-                      fIncludeActive=1, fIncludeCommunity=1)
-
 def viewStatus(fb, statustype=objects.fbStatus,
                ixStatus=None, ixCategory=None, sStatus=None):
     """viewStatus(fb, statustype=fborm.objects.fbStatus, \

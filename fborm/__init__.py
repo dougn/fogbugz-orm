@@ -8,7 +8,7 @@ fborm Module Documentation
 ===========================
 """
 
-__version__ = (0,1,2)
+__version__ = (0,2,0)
 __version_string__ = '.'.join(str(x) for x in __version__)
 
 __author__ = 'Doug Napoleone'
@@ -23,6 +23,8 @@ from .ext import *
 
 class FogBugzORM:
     """FogBugzORM Class Interface Documentation
+    
+    
     """
     
     #########################################################################
@@ -127,6 +129,12 @@ class FogBugzORM:
         """
         return listCustomFieldNames(self.fb, sample_bugs)
     
+    def listAllPeople(self, *args, **kwdargs):
+        """Wrapper around :py:func:`fborm.ext.listAllPeople` .
+        The first argument, the fogbugz instance, is supplied automatically.
+        """
+        return listAllPeople(self.fb, *args, **kwdargs)
+        
     #########################################################################
     ## Now we get to the standard interfaces
     
@@ -265,12 +273,6 @@ class FogBugzORM:
         The first argument, the fogbugz instance, is supplied automatically.
         """
         return listPeople(self.fb, *args, **kwdargs)
-        
-    def listAllPeople(self, *args, **kwdargs):
-        """Wrapper around :py:func:`fborm.commands.listAllPeople` .
-        The first argument, the fogbugz instance, is supplied automatically.
-        """
-        return listAllPeople(self.fb, *args, **kwdargs)
         
     def viewStatus(self, *args, **kwdargs):
         """Wrapper around :py:func:`fborm.commands.viewStatus` .
