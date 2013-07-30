@@ -8,7 +8,7 @@ fborm Module Documentation
 ===========================
 """
 
-__version__ = (0,2,0)
+__version__ = (0,2,1)
 __version_string__ = '.'.join(str(x) for x in __version__)
 
 __author__ = 'Doug Napoleone'
@@ -39,7 +39,7 @@ class FogBugzORM:
         if (username and not password) or (not username and password):
             raise TypeError(
                 "You must supply both 'username' and 'password'")
-        self.namemap = {}
+        self.namemap = namemap
         import fogbugz
         self.fb = fogbugz.FogBugz(hostname, token=token)
         self.username = username
