@@ -45,7 +45,7 @@ def search(fb, casetype=objects.fbBug,
     """search(fb, casetype=fborm.objects.fbBug, q=None, \
               namemap={}, sort_by=None, **args)
     """
-    if 'cols' not in kwdargs:
+    if 'cols' not in args:
         args['cols'] = parse.keys2cols(casetype, namemap)
     if q is not None:
         args['q'] = q
