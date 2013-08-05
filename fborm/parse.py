@@ -114,6 +114,6 @@ def fbsetconvert(value):
         return _dt2fbdt(value)
     if isinstance(value, (tuple, list)):
         return ','.join(fbsetconvert(v) for v in value)
-    return str(value)
+    return unicode(value)
     
     

@@ -18,7 +18,10 @@ clean:
 build:
 	python setup.py sdist build_sphinx
 
-release: build
+commitrel: build
 	touch commit.txt
 	git commit -a -F commit.txt -e && git push
 	python setup.py upload upload_sphinx
+
+release: clean
+	python setup.py sdist build_sphinx upload upload_sphinx
