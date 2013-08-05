@@ -158,7 +158,7 @@ def fbconditional(converter, **conditions):
 
 def fbminievents(eventdict):
     res= fbcol(fblistof(eventdict),
-               colname='minievents', resname='minievents', settable=False)
+               colname='minievents', resname='events', settable=False)
     res.fbtype = "fborm.types.fbminievents"
     return res
 
@@ -253,7 +253,7 @@ fbixBugChildren.fbtype = 'fborm.types.fbixBugChildren'
 
 def _maybeOpen(filemap):
     result = dict(filemap)
-    for name, fileobj in filemap.iteritmes():
+    for name, fileobj in filemap.iteritems():
         if isinstance(fileobj, basestring):
             result[name] = open(fileobj, 'rb')
         elif not hasattr(fileobj, 'read'):
