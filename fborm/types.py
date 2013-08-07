@@ -255,6 +255,8 @@ def _maybeOpen(filemap):
     result = dict(filemap)
     for name, fileobj in filemap.iteritems():
         if isinstance(fileobj, basestring):
+            if isinstance(name, unicode):
+                name = name.encode('utf-8')
             result[name] = open(fileobj, 'rb')
         elif not hasattr(fileobj, 'read'):
             raise TypeError(
