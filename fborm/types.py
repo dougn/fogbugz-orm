@@ -252,17 +252,18 @@ fbixBugChildren.fbtype = 'fborm.types.fbixBugChildren'
 
 
 def _maybeOpen(filemap):
-    result = dict(filemap)
+    result = {}
     for name, fileobj in filemap.iteritems():
+        if isinstance(name, unicode):
+            name = name.encode('utf-8')
         if isinstance(fileobj, basestring):
-            if isinstance(name, unicode):
-                name = name.encode('utf-8')
-            result[name] = open(fileobj, 'rb')
+            fileobj = open(fileobj, 'rb')
         elif not hasattr(fileobj, 'read'):
             raise TypeError(
                 "The 'File' mapping must have values which are "
                 "either strings pointing to a file on disk, or "
                 "objects with a read() method.")
+        result[name] = fileobj
     return result
 
 fbFiles = fbcol(lambda x: None, gettable=False,
