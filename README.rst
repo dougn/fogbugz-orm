@@ -34,7 +34,7 @@ External Links:
 Quick Start
 ===========
 
-**Compairing FogBugzPy to FogBugz-ORM**
+**Comparing FogBugzPy to FogBugz-ORM**
 
 Example code from `FogBugzPy`_ documentation:
 
@@ -46,7 +46,7 @@ Example code from `FogBugzPy`_ documentation:
         print "%s: %s" % (case.ixbug.string, 
                           case.stitle.string.encode('UTF-8'))
                           
-Equivolent FogBugz-ORM code:
+Equivalent FogBugz-ORM code:
 
 .. code:: python
     
@@ -56,7 +56,7 @@ Equivolent FogBugz-ORM code:
         print "%d: %s" % (case.ixBug, case.sTitle)
                           
 * You can access the array of cases directly as a list.
-* The column names are refered to in their proper mixed case matching the API
+* The column names are referred to in their proper mixed case matching the API
   as they must be for the cols argument; ``ixBug``, ``sTitle``.
 * The data is extracted and properly converted; ``ixBug`` is an integer, and
   ``sTitle`` is a UTF-8 converted string.
@@ -141,12 +141,12 @@ Equivolent FogBugz-ORM code:
 
 The CustomFields plugin allows you to add yor own elements to cases in
 `FogBugz`_. These elements are added to the `FogBugz XML API`_ with a prefix
-and a unique magic string suffix. Also any punctuation is transformed.
-So you will need to look up what your custom field is with
-:py:meth:`fborm.FogBugzORM.listCustomFieldNames`. Once you know that
+and a unique magic string suffix. Also, any punctuation is transformed,
+so you will need to look up what your custom field is with
+:py:meth:`fborm.FogBugzORM.listCustomFieldNames`. Once you know that,
 you can simplify your code by setting a ``namemap`` for the returned data.
 This means that if you have multiple servers with the same CustomFields,
-they will have diffent names in the API. Having a per-server ``namemap``
+they will have different names in the API. Having a per-server ``namemap``
 greatly simplifies your code.
 
 .. code:: python
