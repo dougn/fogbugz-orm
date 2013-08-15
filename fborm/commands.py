@@ -325,3 +325,25 @@ def listMilestones(*args, **kwdargs):
     return listFixFors(*args, **kwdargs)
 
 
+def subscribe(fb, ixBug, ixPerson=None):
+    """subscribe(fb, ixBug, ixPerson=None)
+    
+    To subscribe someone else, you must be logged in as an administrator and
+    supply ixPerson.
+    """
+    if ixPerson is None:
+        return fb.subscribe(ixBug=ixBug)
+    else:
+        return fb.subscribe(ixBug=ixBug, ixPerson=ixPerson)
+
+def unsubscribe(fb, ixBug, ixPerson=None):
+    """subscribe(fb, ixBug, ixPerson=None)
+    
+    To unsubscribe someone else, you must be logged in as an administrator and
+    supply ixPerson.
+    """
+    if ixPerson is None:
+        return fb.unsubscribe(ixBug=ixBug)
+    else:
+        return fb.unsubscribe(ixBug=ixBug, ixPerson=ixPerson)
+        

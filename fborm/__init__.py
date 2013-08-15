@@ -312,3 +312,15 @@ class FogBugzORM:
         """
         return listMilestones(self.fb, *args, **kwdargs)
         
+    def subscribe(self, ixBug, ixPerson=None):
+        """Wrapper around :py:func:`fborm.commands.subscribe` .
+        The first argument, the fogbugz instance, is supplied automatically.
+        """
+        return subscribe(self.fb, ixBug, ixPerson)
+    
+    def unsubscribe(self, ixBug, ixPerson=None):
+        """Wrapper around :py:func:`fborm.commands.unsubscribe` .
+        The first argument, the fogbugz instance, is supplied automatically.
+        """
+        return unsubscribe(self.fb, ixBug, ixPerson)
+        
