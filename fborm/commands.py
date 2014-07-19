@@ -140,7 +140,7 @@ def listProjects(fb, projecttype=objects.fbProject,
     if fIncludeDeleted:
         args['fIncludeDeleted'] = 1
     res = fb.listProjects(**args)
-    projects = parse.extract_all(res.projects, projtype, {}, sort_by)
+    projects = parse.extract_all(res.projects, projecttype, {}, sort_by)
     return projects
 
 def viewArea(fb, areatype=objects.fbArea,
@@ -230,15 +230,15 @@ def listPeople(fb, persontype=objects.fbPerson,
     ## api if not supplied. So blanket test to see if it was set away from
     ## None instead of guessing a default that can change on the server.
     if fIncludeDeleted is not None:
-        args['fIncludeDeleted'] = fIncludeDeleted
+        args['fIncludeDeleted'] = int(bool(fIncludeDeleted))
     if fIncludeVirtual is not None:
-        args['fIncludeVirtual'] = fIncludeVirtual
+        args['fIncludeVirtual'] = int(bool(fIncludeVirtual))
     if fIncludeActive is not None:
-        args['fIncludeActive'] = fIncludeActive
+        args['fIncludeActive'] = int(bool(fIncludeActive))
     if fIncludeCommunity is not None:
-        args['fIncludeCommunity'] = fIncludeCommunity
+        args['fIncludeCommunity'] = int(bool(fIncludeCommunity))
     if fIncludeNormal is not None:
-        args['fIncludeNormal'] = fIncludeNormal
+        args['fIncludeNormal'] = int(bool(fIncludeNormal))
     res = fb.listPeople(**args)
     return parse.extract_all(res.people, persontype, {}, sort_by)
 
