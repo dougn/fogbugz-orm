@@ -115,8 +115,7 @@ def fbcommalistof(fbtype):
 
 
 def fbcol(fbtype, colname=None, resname=None, attrib=False,
-          gettable=None,
-          settable=True, setname=None, setter=None):
+          gettable=True, settable=True, setname=None, setter=None):
     """
     """
     extractor = functools.partial(fbtype)
