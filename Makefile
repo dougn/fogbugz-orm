@@ -16,12 +16,5 @@ clean:
 	rm -f commit.txt
 
 build:
-	python setup.py sdist build_sphinx
+	python setup.py bdist_wheel build_sphinx
 
-commitrel: build
-	touch commit.txt
-	git commit -a -F commit.txt -e && git push
-	python setup.py upload upload_sphinx
-
-release: clean
-	python setup.py sdist build_sphinx upload upload_sphinx

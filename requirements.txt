@@ -1,4 +1,5 @@
-fogbugz==0.9.5
-jsontree==0.1.0
+fogbugz
+jsontree
+twine
 Sphinx==1.2b1
 Sphinx-PyPI-upload==0.2.1

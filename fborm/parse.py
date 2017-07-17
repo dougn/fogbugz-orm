@@ -47,7 +47,7 @@ def fbargs(data, fbtypemap={}, namemap={}):
 
 def _convert(res, fbdata, name, conv, typemap, namemap):
     mappedname = namemap.get(getattr(conv, 'resname', name),
-                             getattr(conv, 'resname', name)).lower()
+                             getattr(conv, 'resname', name))
 
     if getattr(conv, 'ignore', False):
         return
@@ -55,6 +55,11 @@ def _convert(res, fbdata, name, conv, typemap, namemap):
         res[name] = conv(fbdata, mappedname)
     else:
         inner_data = fbdata.find(mappedname)
+        if inner_data is None:
+            inner_data = fbdata.find(mappedname.lower())
+            if inner_data is None:
+                #res[name] = None
+                raise RuntimeError('Could not find attribute: ' + repr(mappedname))
         if getattr(conv, 'takes_map', False):
             res[name] = conv(inner_data, namemap)
         elif getattr(conv, 'takes_data', False):
