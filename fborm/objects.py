@@ -233,9 +233,9 @@ fbFixFor = dict(
     fReallyDeleted  = types.fbbool,
     dt              = types.fbcol(types.fbdatetime, setname='dtRelease'),
     dtStart         = types.fbdatetime,
-    sStartNote      = types.fbstring,
-    setixForForDependency = types.fbcol(types.fblistof(types.fbint),
-                                        settable=False))
+    sStartNote      = types.fbstring)
+    #setixForForDependency = types.fbcol(types.fblistof(types.fbint),
+    #                                    settable=False))
 
 
 
