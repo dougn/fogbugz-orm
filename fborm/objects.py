@@ -226,7 +226,7 @@ fbBug_withMiniEvents = dict(
 #:
 fbFixFor = dict(
     ixFixFor        = types.fbint,
-    sFixfor         = types.fbstring,
+    sFixFor         = types.fbstring,
     ixProject       = types.fbint,
     sProject        = types.fbstring,
     fDeleted        = types.fbcol(types.fbbool, setname='fAssignable'),
