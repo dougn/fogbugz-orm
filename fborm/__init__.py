@@ -8,7 +8,7 @@ fborm Module Documentation
 ===========================
 """
 
-__version__ = (0,3,3)
+__version__ = (0,3,4)
 __version_string__ = '.'.join(str(x) for x in __version__)
 
 __author__ = 'Doug Napoleone'
