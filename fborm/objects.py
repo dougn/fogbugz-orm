@@ -117,7 +117,7 @@ fbCategory = dict(
 
 #:
 fbPriority = dict(
-    ixCategory      = types.fbint,
+    ixPriority      = types.fbint,
     fDefault        = types.fbbool,
     sPriority       = types.fbstring)
 
