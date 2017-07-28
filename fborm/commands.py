@@ -98,6 +98,12 @@ def resolve(fb, bug, bugtype, namemap={}, **args):
 
 def close(fb, bug, bugtype, namemap={}, **args):
     return _edit(fb.close, fb, bug, bugtype, namemap, args)
+
+def reopen(fb, bug, bugtype, namemap={}, **args):
+    return _edit(fb.reopen, fb, bug, bugtype, namemap, args)
+
+def reactivate(fb, bug, bugtype, namemap={}, **args):
+    return _edit(fb.reactivate, fb, bug, bugtype, namemap, args)
     
 def listTags(fb, tagtype=objects.fbTag, sort_by=None):
     """listTags(fb, tagtype=fborm.objects.fbTag, sort_by=None)

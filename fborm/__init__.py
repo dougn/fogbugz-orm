@@ -8,7 +8,7 @@ fborm Module Documentation
 ===========================
 """
 
-__version__ = (0,3,4)
+__version__ = (0,3,5)
 __version_string__ = '.'.join(str(x) for x in __version__)
 
 __author__ = 'Doug Napoleone'
@@ -148,7 +148,7 @@ class FogBugzORM:
         """Wrapper around :py:func:`fborm.commands.setCurrentFilter` .
         The first argument, the fogbugz instance, is supplied automatically.
         
-        This extends the normal inerface to accept multiple types of objects
+        This extends the normal interface to accept multiple types of objects
         for the **filter** argument.
         """
         return setCurrentFilter(self.fb, filter)
@@ -157,7 +157,7 @@ class FogBugzORM:
         """Wrapper around :py:func:`fborm.commands.search` .
         The first argument, the fogbugz instance, is supplied automatically.
         The keyword argument **namemap**, if not supplied, will be set to
-        the the namemap member supplied durring construction.
+        the the namemap member supplied during construction.
         """
         if 'namemap' not in kwdargs:
             kwdargs = dict(kwdargs)
@@ -168,7 +168,7 @@ class FogBugzORM:
         """Wrapper around :py:func:`fborm.commands.new` .
         The first argument, the fogbugz instance, is supplied automatically.
         The keyword argument **namemap**, if not supplied, will be set to
-        the the namemap member supplied durring construction.
+        the the namemap member supplied during construction.
         """
         if 'namemap' not in kwdargs:
             kwdargs = dict(kwdargs)
@@ -179,7 +179,7 @@ class FogBugzORM:
         """Wrapper around :py:func:`fborm.commands.edit` .
         The first argument, the fogbugz instance, is supplied automatically.
         The keyword argument **namemap**, if not supplied, will be set to
-        the the namemap member supplied durring construction.
+        the the namemap member supplied during construction.
         """
         if 'namemap' not in kwdargs:
             kwdargs = dict(kwdargs)
@@ -190,7 +190,7 @@ class FogBugzORM:
         """Wrapper around :py:func:`fborm.commands.resolve` .
         The first argument, the fogbugz instance, is supplied automatically.
         The keyword argument **namemap**, if not supplied, will be set to
-        the the namemap member supplied durring construction.
+        the the namemap member supplied during construction.
         """
         if 'namemap' not in kwdargs:
             kwdargs = dict(kwdargs)
@@ -198,15 +198,37 @@ class FogBugzORM:
         return resolve(self.fb, bug, bugtype, **kwdargs)
         
     def close(self, bug, bugtype, **kwdargs):
-        """Wrapper around :py:func:`fborm.commands.resolve` .
+        """Wrapper around :py:func:`fborm.commands.close` .
         The first argument, the fogbugz instance, is supplied automatically.
         The keyword argument **namemap**, if not supplied, will be set to
-        the the namemap member supplied durring construction.
+        the the namemap member supplied during construction.
         """
         if 'namemap' not in kwdargs:
             kwdargs = dict(kwdargs)
             kwdargs['namemap'] = self.namemap
         return close(self.fb, bug, bugtype, **kwdargs)
+
+    def reopen(self, bug, bugtype, **kwdargs):
+        """Wrapper around :py:func:`fborm.commands.reopen` .
+        The first argument, the fogbugz instance, is supplied automatically.
+        The keyword argument **namemap**, if not supplied, will be set to
+        the the namemap member supplied during construction.
+        """
+        if 'namemap' not in kwdargs:
+            kwdargs = dict(kwdargs)
+            kwdargs['namemap'] = self.namemap
+        return reopen(self.fb, bug, bugtype, **kwdargs)
+
+    def reactivate(self, bug, bugtype, **kwdargs):
+        """Wrapper around :py:func:`fborm.commands.reactivate` .
+        The first argument, the fogbugz instance, is supplied automatically.
+        The keyword argument **namemap**, if not supplied, will be set to
+        the the namemap member supplied during construction.
+        """
+        if 'namemap' not in kwdargs:
+            kwdargs = dict(kwdargs)
+            kwdargs['namemap'] = self.namemap
+        return reactivate(self.fb, bug, bugtype, **kwdargs)
         
     def listTags(self, *args, **kwdargs):
         """Wrapper around :py:func:`fborm.commands.listTags` .
