@@ -69,7 +69,7 @@ fbTag = dict(
     cTagUses    = types.fbint)
 
 #:
-fbPerson = dict(
+fbPersonOld = dict(
     ixPerson        = types.fbint,
     sFullName       = types.fbstring,
     sEmail          = types.fbstring,
@@ -89,6 +89,22 @@ fbPerson = dict(
     fPaletteExpanded    = types.fbbool,
     ixBugWorkingOn  = types.fbint,
     sFrom           = types.fbstring)
+
+#:
+fbPerson = dict(
+    ixPerson        = types.fbint,
+    sFullName       = types.fbstring,
+    sEmail          = types.fbstring,
+    sPhone          = types.fbstring,
+    fAdministrator  = types.fbbool,
+    fCommunity      = types.fbbool,
+    fVirtual        = types.fbbool,
+    fDeleted        = types.fbbool,
+    fNotify         = types.fbbool,
+    sHomepage       = types.fbstring,
+    sLocale         = types.fbstring,
+    sLanguage       = types.fbstring,
+    sTimeZoneKey    = types.fbstring)
 
 #:
 fbProject = dict(

@@ -219,7 +219,7 @@ def viewPerson(fb, persontype=objects.fbPerson,
         res = fb.viewPerson(ixPerson=ixPerson)
     if sEmail:
         res = fb.viewPerson(sEmail=sEmail)
-    if res.person:
+    if res.people.person:
         return parse.extract(res, persontype)
     return None
     
