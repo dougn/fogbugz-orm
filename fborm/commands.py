@@ -217,9 +217,11 @@ def viewPerson(fb, persontype=objects.fbPerson,
         raise ValueError('Must supply ixPerson or sEmail')
     if ixPerson:
         res = fb.viewPerson(ixPerson=ixPerson)
-    if sProject:
+    if sEmail:
         res = fb.viewPerson(sEmail=sEmail)
-    return parse.extract(res, persontype)
+    if res.person:
+        return parse.extract(res, persontype)
+    return None
     
 def listPeople(fb, persontype=objects.fbPerson,
                fIncludeDeleted=None, fIncludeVirtual=None, fIncludeNormal=None,
