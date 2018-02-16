@@ -215,7 +215,7 @@ def viewPerson(fb, persontype=objects.fbPerson,
     """
     if (not ixPerson and not sEmail) or (ixPerson and sEmail):
         raise ValueError('Must supply ixPerson or sEmail')
-    if ixProject:
+    if ixPerson:
         res = fb.viewPerson(ixPerson=ixPerson)
     if sProject:
         res = fb.viewPerson(sEmail=sEmail)
