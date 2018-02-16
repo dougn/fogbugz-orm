@@ -100,7 +100,6 @@ fbPerson = dict(
     fCommunity      = types.fbbool,
     fVirtual        = types.fbbool,
     fDeleted        = types.fbbool,
-    fNotify         = types.fbbool,
     sHomepage       = types.fbstring,
     sLocale         = types.fbstring,
     sLanguage       = types.fbstring,
