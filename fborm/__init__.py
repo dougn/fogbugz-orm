@@ -8,7 +8,7 @@ fborm Module Documentation
 ===========================
 """
 
-__version__ = (0,3,12)
+__version__ = (0,3,13)
 __version_string__ = '.'.join(str(x) for x in __version__)
 
 __author__ = 'Doug Napoleone'
@@ -338,40 +338,40 @@ class FogBugzORM:
         """Wrapper around :py:func:`fborm.commands.editFixFor`.
         The first argument, the fogbugz instance, is supplied automatically.
         """
-        return listMilestones(self.fb, *args, **kwdargs)
+        return editFixFor(self.fb, *args, **kwdargs)
     
     def editMilestone(self, *args, **kwdargs):
         """Wrapper around :py:func:`fborm.commands.editMilestone` which
         is an alias for :py:func:`fborm.commands.editFixFor` .
         The first argument, the fogbugz instance, is supplied automatically.
         """
-        return listMilestones(self.fb, *args, **kwdargs)
+        return editMilestone(self.fb, *args, **kwdargs)
     
     def newFixFor(self, *args, **kwdargs):
         """Wrapper around :py:func:`fborm.commands.newFixFor`.
         The first argument, the fogbugz instance, is supplied automatically.
         """
-        return listMilestones(self.fb, *args, **kwdargs)
+        return newFixFor(self.fb, *args, **kwdargs)
     
     def newMilestone(self, *args, **kwdargs):
         """Wrapper around :py:func:`fborm.commands.newMilestone` which
         is an alias for :py:func:`fborm.commands.newFixFor` .
         The first argument, the fogbugz instance, is supplied automatically.
         """
-        return listMilestones(self.fb, *args, **kwdargs)
+        return newMilestone(self.fb, *args, **kwdargs)
     
     def addFixForDependency(self, ixFixFor, ixFixForDependsOn):
         """Wrapper around :py:func:`fborm.commands.addFixForDependency` .
         The first argument, the fogbugz instance, is supplied automatically.
         """
-        return fb.addFixForDependency(self.fb, ixFixFor, ixFixForDependsOn)
+        return addFixForDependency(self.fb, ixFixFor, ixFixForDependsOn)
     
     def addMilestoneDependency(self, ixFixFor, ixFixForDependsOn):
         """Wrapper around :py:func:`fborm.commands.addMilestoneDependency` which
         is an alias for :py:func:`fborm.commands.addFixForDependency` .
         The first argument, the fogbugz instance, is supplied automatically.
         """
-        return addFixForDependency(self.fb, ixFixFor, ixFixForDependsOn)
+        return addMilestoneDependency(self.fb, ixFixFor, ixFixForDependsOn)
     
     def deleteFixForDependency(self, ixFixFor, ixFixForDependsOn):
         """Wrapper around :py:func:`fborm.commands.addFixForDependency` .
@@ -384,7 +384,7 @@ class FogBugzORM:
         is an alias for :py:func:`fborm.commands.deleteFixForDependency` .
         The first argument, the fogbugz instance, is supplied automatically.
         """
-        return deleteFixForDependency(self.fb, ixFixFor, ixFixForDependsOn)
+        return deleteMilestoneDependency(self.fb, ixFixFor, ixFixForDependsOn)
 
     def subscribe(self, ixBug, ixPerson=None):
         """Wrapper around :py:func:`fborm.commands.subscribe` .
