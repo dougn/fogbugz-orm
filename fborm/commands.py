@@ -322,7 +322,9 @@ def editFixFor(fb, ixFixFor, sFixFor, fixfortype=objects.fbFixFor,
     if fAssignable:
         baseargs.fAssignable = 1
     if sStartNote:
-        baseargs.sStartNote = baseargs
+        baseargs.sStartNote = sStartNote
+        if not dtStart:
+            dtStart = datetime.datetime.now().date()
     if dtStart:
         baseargs.dtStart = dtStart
     if dtRelease:
