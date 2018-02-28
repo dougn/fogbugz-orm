@@ -15,6 +15,7 @@ fborm.commands Module Documentation
 from . import objects
 from . import parse
 from . import util
+import jsontree
 import re
     
 def listFilters(fb, sort_by=None):
@@ -300,6 +301,96 @@ def viewMilestone(*args, **kwdargs):
     alias of :py:func:`fborm.commands.viewFixFor`
     """
     return viewFixFor(*args, **kwdargs)
+
+
+def editFixFor(fb, ixFixFor, sFixFor, fixfortype=objects.fbFixFor,
+               dtRelease=None, dtEnd=None, dt=None,
+               dtStart=None, sStartNote=None,
+               fAssignable=None):
+    """editFixFor(fb, ixFixFor, sFixFor, fixfortype=objects.fbFixFor, \
+                 dtRelease=None, dtEnd=None, dt=None,
+                 dtStart=None, sStartNote=None, \
+                 fAssignable=None
+    """
+    if dt:
+        dtRelease = dt
+    if dtEnd:
+        dtRelease = dtEnd
+    baseargs = jsontree.jsontree(ixFixFor=ixFixFor, sFixFor=sFixFor)
+    if fAssignable:
+        baseargs.fAssignable = 1
+    if sStartNote:
+        baseargs.sStartNote = baseargs
+    if dtStart:
+        baseargs.dtStart = dtStart
+    if dtRelease:
+        baseargs.dtRelease = dtRelease
+    return fb.editFixFor(**parse.fbargs(baseargs))
+
+def editMilestone(*args, **kwdargs):
+    """editMilestone(fb, ixFixFor, sFixFor, fixfortype=objects.fbFixFor, \
+                     dtRelease=None, dtEnd=None, dt=None, \
+                     dtStart=None, sStartNote=None, \
+                     fAssignable=None
+    alias of :py:func:`fborm.commands.editFixFor`
+    """
+    return editFixFor(*args, **kwdargs)
+
+def newFixFor(fb, ixProject, sFixFor, fixfortype=objects.fbFixFor,
+              dtRelease=None, dtEnd=None, dtStart=None, sStartNote=None,
+              fAssignable=None):
+    """newFixFor(fb, ixProject, sFixFor, fixfortype=objects.fbFixFor, \
+              dtRelease=None, dtEnd=None, dtStart=None, sStartNote=None, \
+              fAssignable=None)
+    """
+    kargs = jsontree.jsontree(ixProject=ixProject, sFixFor=sFixFor)
+    if dtEnd:
+        dtRelease = dtEnd
+    if dtRelease:
+        kargs.dtRelease = dtRelease
+    if dtStart:
+        kargs.dtStart = dtStart
+    if sStartNote:
+        kargs.sStartNote = sStartNote
+    if fAssignable:
+        kargs.fAssignable = 1
+    res = fb.newFixFor(**parse.fbargs(kargs))
+    return parse.extract(res, fixfortype)
+
+def newMilestone(*args, **kwdargs):
+    """newMilestone(fb, ixProject, sFixFor, \
+                    fixfortype=fborm.objects.fbFixFor, \
+                    dtRelease=None, dtEnd=None, dtStart=None, sStartNote=None, \
+                    fAssignable=None)
+    alias of :py:func:`fborm.commands.newFixFor`
+    """
+    return newFixFor(*args, **kwdargs)
+
+def addFixForDependency(fb, ixFixFor, ixFixForDependsOn):
+    """addFixForDependency(fb, ixFixFor, ixFixForDependsOn)
+    """
+    fb.addFixForDependency(ixFixFor=ixFixFor,
+                           ixFixForDependsOn=ixFixForDependsOn)
+
+def addMilestoneDependency(*args, **kwdargs):
+    """addMilestoneDependency(fb, ixFixFor, ixFixForDependsOn)
+    alias of :py:func:`fborm.commands.addFixForDependency`
+    """
+    return addFixForDependency(*args, **kwdargs)
+
+def deleteFixForDependency(fb, ixFixFor, ixFixForDependsOn):
+    """deleteFixForDependency(fb, ixFixFor, ixFixForDependsOn)
+    alias of :py:func:`fborm.commands.addFixForDependency`
+    """
+    fb.deleteFixForDependency(ixFixFor=ixFixFor,
+                              ixFixForDependsOn=ixFixForDependsOn)
+    
+def deleteMilestoneDependency(*args, **kwdargs):
+    """deleteMilestoneDependency(fb, ixFixFor, ixFixForDependsOn)
+    alias of :py:func:`fborm.commands.deleteFixForDependency`
+    """
+    return deleteFixForDependency(*args, **kwdargs)
+
 
 def listFixFors(fb, fixfortype=objects.fbFixFor,
                 ixProject=None, ixFixFor=None, fIncludeDeleted=None,
