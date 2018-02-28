@@ -15,7 +15,9 @@ fborm.commands Module Documentation
 from . import objects
 from . import parse
 from . import util
+from . import types
 import jsontree
+import datetime
 import re
     
 def listFilters(fb, sort_by=None):
@@ -337,30 +339,39 @@ def editMilestone(*args, **kwdargs):
     return editFixFor(*args, **kwdargs)
 
 def newFixFor(fb, ixProject, sFixFor, fixfortype=objects.fbFixFor,
-              dtRelease=None, dtEnd=None, dtStart=None, sStartNote=None,
+              dtRelease=None, dtEnd=None, dt=None,
+              dtStart=None, sStartNote=None,
               fAssignable=None):
     """newFixFor(fb, ixProject, sFixFor, fixfortype=objects.fbFixFor, \
-              dtRelease=None, dtEnd=None, dtStart=None, sStartNote=None, \
-              fAssignable=None)
+                 dtRelease=None, dtEnd=None, dt=None, \
+                 dtStart=None, sStartNote=None, \
+                 fAssignable=None)
     """
     kargs = jsontree.jsontree(ixProject=ixProject, sFixFor=sFixFor)
+    if dt:
+        dtRelease = dt
     if dtEnd:
         dtRelease = dtEnd
     if dtRelease:
         kargs.dtRelease = dtRelease
-    if dtStart:
-        kargs.dtStart = dtStart
     if sStartNote:
         kargs.sStartNote = sStartNote
+        if not dtStart:
+            dtStart = datetime.datetime.now().date()
+    if dtStart:
+        kargs.dtStart = dtStart
     if fAssignable:
         kargs.fAssignable = 1
-    res = fb.newFixFor(**parse.fbargs(kargs))
-    return parse.extract(res, fixfortype)
+    res = fb.newFixFor(**parse.fbargs(kargs, fixfortype))
+    return parse.extract(res, dict(ixFixFor=types.fbint,
+                                   sFixFor=types.fbstring,
+                                   sStartNote=types.fbstring))
 
 def newMilestone(*args, **kwdargs):
     """newMilestone(fb, ixProject, sFixFor, \
                     fixfortype=fborm.objects.fbFixFor, \
-                    dtRelease=None, dtEnd=None, dtStart=None, sStartNote=None, \
+                    dtRelease=None, dtEnd=None, dt=None, \
+                    dtStart=None, sStartNote=None, \
                     fAssignable=None)
     alias of :py:func:`fborm.commands.newFixFor`
     """
