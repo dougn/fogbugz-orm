@@ -8,7 +8,7 @@ fborm Module Documentation
 ===========================
 """
 
-__version__ = (0,3,17)
+__version__ = (0,3,18)
 __version_string__ = '.'.join(str(x) for x in __version__)
 
 __author__ = 'Doug Napoleone'
@@ -20,6 +20,7 @@ from .objects import *
 from .parse import *
 from .commands import *
 from .ext import *
+from .patch import *
 
 class FogBugzORM:
     """FogBugzORM Class Interface Documentation
