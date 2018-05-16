@@ -33,7 +33,7 @@ def setCurrentFilter(fb, filter):
         fb.setCurrentFilter(sFilter=str(filter))
     elif isinstance(filter, basestring):
         fb.setCurrentFilter(sFilter=str(filter))
-    elif hasattr(filter, has_key) and filter.has_key('sFilter'):
+    elif hasattr(filter, "has_key") and filter.has_key('sFilter'):
         ## This is a special test that will work with dicts, jsontrees, and
         ## BeautifulSoup elements which are very particular on how you look
         ## up attributes. The 'in' keyword, get, and hasattr have been
